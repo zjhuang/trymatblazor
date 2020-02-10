@@ -1,0 +1,34 @@
+﻿@page "/"
+
+
+<MatTable Items="@todos" LoadInitialData="true" Striped="true" RequestApiOnlyOnce="true" AllowSelection="true" RowClass="tester"
+          ApiUrl="https://jsonplaceholder.typicode.com/todos" FilterByColumnName="Title" DebounceMilliseconds="150" class="mat-elevation-z5">
+    <MatTableHeader>
+        <th>Id</th>
+        <th>Completed</th>
+        <th>Todo</th>
+    </MatTableHeader>
+    <MatTableRow>
+        <td>@String.Format("{0:d}", @context.Id)</td>
+        <td>@context.Completed</td>
+        <td>@context.Title</td>
+    </MatTableRow>
+</MatTable>
+
+@code
+{
+
+    public class Todo
+    {
+        public int UserId { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public bool Completed { get; set; }
+
+        public Todo()
+        {
+        }
+    }
+
+    Todo[] todos;
+}
